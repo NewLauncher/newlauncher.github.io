@@ -11,19 +11,6 @@
     "url": "https://bmclapi2.bangbang93.com"
   },
   {
-    "url": "https://mc-mirror-1.newlauncher.ru",
-    "headHash": "md5"
-  },
-  {
-    "url": "https://mc-mirror-2.newlauncher.ru",
-    "headHash": "md5"
-  },
-  {
-    "url": "https://mc-mirror-1.newlightclient.ru",
-    "headHash": "md5"
-  },
-  {
-    "url": "https://mc-mirror-2.newlightclient.ru",
-    "headHash": "md5"
+    "url": "https://launchermeta.newlauncher.xyz"
   }
 ]
