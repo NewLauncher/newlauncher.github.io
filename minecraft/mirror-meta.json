@@ -1,16 +1,8 @@
 [
-  {
-    "url": "https://piston-meta.mojang.com",
-    "headHash": "md5"
-  },
-  {
-    "url": "https://launchermeta.mojang.com",
-    "headHash": "md5"
-  },
-  {
-    "url": "https://bmclapi2.bangbang93.com"
-  },
-  {
-    "url": "https://launchermeta.newlauncher.xyz"
-  }
+  { "url": "https://launchermeta.newlauncher.xyz" },
+  { "url": "https://claunchermeta.newlauncher.xyz" },
+  { "url": "https://launchermeta.newlauncher.ru", "countries": ["RU"] },
+  { "url": "https://piston-meta.mojang.com", "headHash": "md5" },
+  { "url": "https://launchermeta.mojang.com", "headHash": "md5" },
+  { "url": "https://bmclapi2.bangbang93.com" }
 ]
