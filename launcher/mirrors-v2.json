@@ -1,6 +1,6 @@
 [
-  { "url": "https://api.launchernew.xyz" },
-  { "url": "https://mirror1.launchernew.xyz" },
+  { "url": "https://api.newlauncher.pro" },
+  { "url": "https://mirror1.newlauncher.pro" },
   { "url": "https://api.newlauncher.ru", "countries": ["RU"] },
   { "url": "https://mirror1.newlauncher.ru", "countries": ["RU"] },
   { "url": "https://mirror2.newlauncher.ru", "countries": ["RU"] },
