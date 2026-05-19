@@ -1,7 +1,4 @@
 [
-  { "url": "https://resources.newlauncher.pro" },
-  { "url": "https://cresources.newlauncher.pro" },
-  { "url": "https://resources.newlauncher.ru", "countries": ["RU"] },
   { "url": "https://resources.download.minecraft.net" },
   { "url": "https://bmclapi2.bangbang93.com/assets" }
 ]
