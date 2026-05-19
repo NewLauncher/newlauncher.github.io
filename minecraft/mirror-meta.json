@@ -1,7 +1,4 @@
 [
-  { "url": "https://launchermeta.newlauncher.pro" },
-  { "url": "https://claunchermeta.newlauncher.pro" },
-  { "url": "https://launchermeta.newlauncher.ru", "countries": ["RU"] },
   { "url": "https://piston-meta.mojang.com", "headHash": "md5" },
   { "url": "https://launchermeta.mojang.com", "headHash": "md5" },
   { "url": "https://bmclapi2.bangbang93.com" }
