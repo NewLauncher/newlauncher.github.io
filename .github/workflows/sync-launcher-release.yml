@@ -1,0 +1,62 @@
+name: Sync launcher release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Launcher version
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+      VERSION: ${{ inputs.version }}
+      SOURCE: https://cdn.newlauncher.pro/launcher/react/windows
+
+    steps:
+      - name: Download from CDN
+        run: |
+          mkdir files
+          for name in windows windows-ia32 windows-x64; do
+            for ext in exe exe.blockmap; do
+              file="NewLauncher-$VERSION-$name.$ext"
+              curl -fsSL --retry 3 -o "files/$file" "$SOURCE/$file"
+            done
+          done
+          curl -fsSL --retry 3 -o files/latest.yml "$SOURCE/latest.yml"
+          grep -qx "version: $VERSION" files/latest.yml
+          ls -l files
+
+      - name: Verify checksums
+        run: |
+          python3 - <<'PY'
+          import base64, hashlib, re, sys
+          text = open('files/latest.yml').read()
+          entries = re.findall(r'- url: (\S+)\n\s+sha512: (\S+)\n\s+size: (\d+)', text)
+          if not entries:
+              sys.exit('no files in latest.yml')
+          for url, sha512, size in entries:
+              data = open(f'files/{url}', 'rb').read()
+              digest = base64.b64encode(hashlib.sha512(data).digest()).decode()
+              if digest != sha512 or len(data) != int(size):
+                  sys.exit(f'mismatch: {url}')
+              print(f'ok {url}')
+          PY
+
+      - name: Replace release assets
+        run: |
+          gh release view launcher --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' > old.txt
+          gh release upload launcher files/* --repo "$GITHUB_REPOSITORY" --clobber
+          while read -r name; do
+            case "$name" in
+              "NewLauncher-$VERSION-"*|latest.yml) ;;
+              *) gh release delete-asset launcher "$name" --repo "$GITHUB_REPOSITORY" --yes ;;
+            esac
+          done < old.txt
+          gh release view launcher --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[] | "\(.name) \(.size)"'
